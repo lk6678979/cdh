@@ -157,3 +157,16 @@ service httpd start
 #设置httpd服务开机自启
 systemctl enable httpd.service
 ```
+## 11. 设置swap(所有节点）
+```
+echo vm.swappiness = 0 >> /etc/sysctl.conf
+sysctl -w vm.swappiness=0
+```
+## 12. 禁用透明页(所有节点）
+```
+cat << EOF >> /etc/rc.d/rc.local
+echo never > /sys/kernel/mm/transparent_hugepage/defrag
+echo never > /sys/kernel/mm/transparent_hugepage/enabled
+EOF
+chmod +x /etc/rc.d/rc.local
+```
