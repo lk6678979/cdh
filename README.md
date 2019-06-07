@@ -167,13 +167,17 @@ echo never > /sys/kernel/mm/transparent_hugepage/enabled
 EOF
 chmod +x /etc/rc.d/rc.local
 ```
-## 13. 配置Cloudera Manager包yum源（manager节点）
-### 13.1 将Cloudera Manager安装需要的5个rpm包以及一个asc文件下载到本地，放在同一目录，执行createrepo命令生成rpm元数据。
+## 13. 将下载的cm和cdh文件上传到linux目录，例如如下2个目录
 ```shell
-#创建文件存储目录
+#把 CDH 6.2 的三个文件放到/root/cdh 6.2中，并且注意把sha256后缀的文件名修改为sha
+mkdir -p /root/cdh6.2
+# 把 Cloudera Manager 6.2 的7个文件放到/root/cm6.2中
 mkdir -p /root/cm6.2
-# 将下载的cm包文件移到此目录下:
-mv cm6 /root/cm6.2
+```
+## 14. 配置本地repo源 
+### 14.1 配置Cloudera Manager包yum源（manager节点）
+* 将Cloudera Manager安装需要的5个rpm包以及一个asc文件上传到linux服务器(步骤13创建的目录/root/cm6.2)，执行createrepo命令生成rpm元数据。
+```shell
 #进入目录
 cd /root/cm6.2/
 #创建repodata： 
@@ -181,3 +185,29 @@ yum install createrepo
 #（注意此命令的最后带一个点） 最终 cm6.2目录下多了一个repodata目录
 createrepo . 
 ``` 
+### 14.2 配置Web服务器
+* 将 cdh6.2目录 和 cm6.1目录 移动到/var/www/html目录下, 使得用户可以通过HTTP访问这些rpm包。
+```shell
+cd /root
+mkdir -p /var/www/html
+mv ./cdh6.2/ ./cm6.2/ /var/www/html
+``` 
+### 14.3 使得用户可以通过HTTP访问这些/var/www/html目录下的文件
+* 192.168.10.41是本机地址
+```shell
+cat << EOF >> /etc/yum.repos.d/os.repo
+[osrepo]
+name=os_repo
+baseurl=http://192.168.10.41/cm6.2
+enabled=true
+gpgcheck=false
+EOF
+```
+
+			5.sudo yum repolist
+			6.vim /etc/httpd/conf/httpd.conf 
+				修改 /etc/httpd/conf/httpd.conf 配置文件，在<IfModule mime_module>中修改以下内容
+				把 第284行的 AddType application/x-gzip .gz .tgz 修改为 AddType application/x-gzip .gz .tgz .parcel
+			7.重启httpd服务 systemctl restart httpd
+				http://192.168.88.100/cdh6.2/
+				http://192.168.88.100/cm6.2/
