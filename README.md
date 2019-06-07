@@ -167,3 +167,15 @@ echo never > /sys/kernel/mm/transparent_hugepage/enabled
 EOF
 chmod +x /etc/rc.d/rc.local
 ```
+## 13. 配置Cloudera Manager包yum源（manager节点）
+```shell
+#创建文件存储目录
+mkdir -p /var/www/html/cloudera-repos/
+# 将下载的cm包文件移到此目录下:
+mv cm6 /var/www/html/cloudera-repos/
+#进入目录
+cd /var/www/html/cloudera-repos/cm6/
+#创建repodata： 
+yum install createrepo
+createrepo .
+``` 
