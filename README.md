@@ -168,14 +168,16 @@ EOF
 chmod +x /etc/rc.d/rc.local
 ```
 ## 13. 配置Cloudera Manager包yum源（manager节点）
+### 13.1 将Cloudera Manager安装需要的5个rpm包以及一个asc文件下载到本地，放在同一目录，执行createrepo命令生成rpm元数据。
 ```shell
 #创建文件存储目录
-mkdir -p /var/www/html/cloudera-repos/
+mkdir -p /root/cm6.2
 # 将下载的cm包文件移到此目录下:
-mv cm6 /var/www/html/cloudera-repos/
+mv cm6 /root/cm6.2
 #进入目录
-cd /var/www/html/cloudera-repos/cm6/
+cd /root/cm6.2/
 #创建repodata： 
 yum install createrepo
-createrepo .
+#（注意此命令的最后带一个点） 最终 cm6.2目录下多了一个repodata目录
+createrepo . 
 ``` 
