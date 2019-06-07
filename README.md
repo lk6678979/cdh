@@ -68,3 +68,58 @@ EOF
 source /etc/profile
 echo "JAVA_HOME=/usr/java/jdk1.8" >> /etc/environment
 ```
+## 8. 安装和配置mysql数据库
+
+* 首先删除自带的MariaDB：
+
+```
+yum erase -y mariadb mariadb-libs
+```
+
+* 安装Mysql，因为依赖关系，这里必须按照这个顺序安装(自行下载安装rpm文件)：
+
+```
+rpm -ivh mysql-community-common-5.7.20-1.el7.x86_64.rpm
+rpm -ivh mysql-community-libs-5.7.20-1.el7.x86_64.rpm
+rpm -ivh mysql-community-client-5.7.20-1.el7.x86_64.rpm
+rpm -ivh mysql-community-server-5.7.20-1.el7.x86_64.rpm
+```
+
+* 设置Mysql：
+
+```
+systemctl enable mysqld.service
+service mysqld start
+grep 'temporary password' /var/log/mysqld.log
+```
+
+* 执行完毕之后会有类似如下显示（临时生成的密码会有区别）：
+
+```
+2017-12-17T11:26:18.937718Z 1 [Note] A temporary password is generated 
+for root@localhost: LgEu(D(<Y9Q?
+```
+
+* 根据上面查找到的密码登录mysql
+
+```
+mysql -uroot -p
+```
+
+* 以下是mysql命令行：
+
+修改密码，密码为：taima@123ABC，必须包含大小写字母、数字和符号
+```
+alter user root@localhost identified by 'Sziov@2019';
+#授权用户root使用密码passwd从任意主机连接到mysql服务器
+GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'Sziov@2019' WITH GRANT OPTION;
+flush privileges;
+```
+为ActiveMonitor和Hive创建数据库：
+```
+create database amon DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
+create database hive DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
+create database oozie DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
+create database hue DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
+quit;
+```
