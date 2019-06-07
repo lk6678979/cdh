@@ -123,3 +123,11 @@ create database oozie DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
 create database hue DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
 quit;
 ```
+
+## 9. 创建/usr/share/java目录，将mysql-jdbc包放过去（所有节点）,mysql包自行下载
+```shell
+mkdir -p /usr/share/java
+mv /opt/mysql-j/mysql-connector-java-5.1.44.jar /usr/share/java/
+#mysql-connector-java-5.1.34.jar 一定要命名为mysql-connector-java.jar
+mv /usr/share/java/mysql-connector-java-5.1.44.jar /usr/share/java/mysql-connector-java.jar 
+```
