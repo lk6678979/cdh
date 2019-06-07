@@ -2,7 +2,7 @@
 ## 1. 下载安装文件
 * ClouderaManager下载地址(全部下载）
 https://archive.cloudera.com/cm6/6.2.0/redhat7/yum/RPMS/x86_64/  
-* 全部文件下载地址：  
+* 全部文件下载地址：
 ```
 https://archive.cloudera.com/cm6/6.2.0/redhat7/yum/RPMS/x86_64/cloudera-manager-agent-6.2.0-968826.el7.x86_64.rpm  
 https://archive.cloudera.com/cm6/6.2.0/redhat7/yum/RPMS/x86_64/cloudera-manager-daemons-6.2.0-968826.el7.x86_64.rpm  
@@ -15,7 +15,7 @@ https://archive.cloudera.com/cm6/6.2.0/allkeys.asc
 ![](https://github.com/lk6678979/image/blob/master/cdh/down-1.png)  
 * CDH6.2.0安装包地址：https://archive.cloudera.com/cdh6/6.2.0/parcels/  
 由于我们的操作系统为CentOS7，需要下载以下文件：
-* 全部文件下载地址：  
+* 全部文件下载地址：
 ```
 https://archive.cloudera.com/cdh6/6.2.0/parcels/CDH-6.2.0-1.cdh6.2.0.p0.967373-el7.parcel  
 https://archive.cloudera.com/cdh6/6.2.0/parcels/CDH-6.2.0-1.cdh6.2.0.p0.967373-el7.parcel.sha1  
