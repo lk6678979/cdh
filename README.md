@@ -65,25 +65,22 @@ ssh-copy-id -i root@node1.cdh.com
 ssh-copy-id -i root@node2.cdh.com
 ssh-copy-id -i root@node3.cdh.com
 ```
-## 7. 安装JDK1.8
-
-建议使用 **/usr/java/jdk1.8** 作为 **JAVA_HOME**,因为YARN等组件默认使用这个目录为 **JAVA_HOME**，直接配置到这里可以避免很多麻烦。
-假设jdk的tar已经拷贝到服务器的 **/usr/java** 目录下 ：
-
+## 7. 安装JDK
+* 所有节点，使用CDH提供的oracle-j2sdk1.8-1.8.0+update181-1.x86_64.rpm安装，默认装在/usr/java/jdk1.8.0_181-cloudera目录
 ```
-tar zxvf jdk-8u152-linux-x64.tar.gz
-mkdir jdk1.8
-mv jdk1.8.0_152/* jdk1.8/
+rpm -qa | grep java # 查询已安装的java
+yum remove java* # 卸载
+rpm -ivh oracle-j2sdk1.8-1.8.0+update181-1.x86_64.rpm
 ```
 * 配置环境变量：
 ```
 cat << EOF >> /etc/profile
-export JAVA_HOME=/usr/java/jdk1.8
+export JAVA_HOME=/usr/java/jdk1.8.0_181-cloudera
 export PATH=\$JAVA_HOME/bin:\$PATH
 export CLASSPATH=.:\$JAVA_HOME/lib/dt.jar:\$JAVA_HOME/lib/tools.jar
 EOF
 source /etc/profile
-echo "JAVA_HOME=/usr/java/jdk1.8" >> /etc/environment
+echo "JAVA_HOME=/usr/java/jdk1.8.0_181-cloudera" >> /etc/environment
 ```
 ## 8. 安装和配置mysql数据库
 
