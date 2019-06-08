@@ -218,3 +218,20 @@ http://192.168.10.41/cdh6.2/
 http://192.168.10.41/cm6.2/  
 ![](https://github.com/lk6678979/image/blob/master/cdh/cdh6.2.jpg)  
 ![](https://github.com/lk6678979/image/blob/master/cdh/cm6.2.jpg) 
+* 制作Cloudera Manager的repo源  
+1.vim /etc/yum.repos.d/cm.repo 以下为文件内容  
+* 192.168.10.41是本机地址  
+```shell
+cat << EOF >> /etc/yum.repos.d/os.repo
+[cmrepo]
+name = cm_repo
+baseurl = http://192.168.10.41/cm6.2
+enable = true
+gpgcheck = false
+EOF
+sudo yum repolist
+```
+* 重启httpd服务  
+```shell
+systemctl restart httpd
+```
