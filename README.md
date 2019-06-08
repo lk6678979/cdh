@@ -10,6 +10,7 @@ https://archive.cloudera.com/cm6/6.2.0/redhat7/yum/RPMS/x86_64/cloudera-manager-
 https://archive.cloudera.com/cm6/6.2.0/redhat7/yum/RPMS/x86_64/cloudera-manager-server-db-2-6.2.0-968826.el7.x86_64.rpm  
 https://archive.cloudera.com/cm6/6.2.0/redhat7/yum/RPMS/x86_64/enterprise-debuginfo-6.2.0-968826.el7.x86_64.rpm  
 https://archive.cloudera.com/cm6/6.2.0/redhat7/yum/RPMS/x86_64/oracle-j2sdk1.8-1.8.0+update181-1.x86_64.rpm  
+https://archive.cloudera.com/cm6/6.2.0/redhat7/yum/RPM-GPG-KEY-cloudera
 https://archive.cloudera.com/cm6/6.2.0/allkeys.asc
 ```
 ![](https://github.com/lk6678979/image/blob/master/cdh/down-1.png)  
@@ -242,6 +243,12 @@ EOF
 source /etc/profile
 echo "JAVA_HOME=/usr/java/jdk1.8.0_181-cloudera" >> /etc/environment
 ```
+### 14.2 通过yum安装Cloudera Manager Server：（Cloudera Manager Server的源 已经配置到了repo库中）
+* 最后一行显示 Complete!
+```
+yum -y install cloudera-manager-server 
+```
+
 ### 14.2 初始化数据库
 ```
 /opt/cloudera/cm/schema/scm_prepare_database.sh mysql -uroot -pOwp@2019 cm cm
@@ -265,24 +272,7 @@ yum install net-tools 安装 netstat
 netstat -lnpt | grep 7180 要等一段时间启动完全启动成功后，才能看到端口被使用，然后才能真正访问到CM的登录网页
 #显示 tcp 0  0 0.0.0.0:7180  0.0.0.0:*  LISTEN  68289/java
 ```
-### 14.4 本地cdh库搭建
-#### 14.4.1 下载安装文件
-* 找一个可以访问外网的linux服务器，下载所需安装包，建立本地仓库，操作指令见官网：    
-https://www.cloudera.com/documentation/enterprise/upgrade/topics/cm_ig_create_local_package_repo.html  
-* Cloudera Manager 6
-```
-sudo mkdir -p /var/www/html/cloudera-repos
-sudo wget --recursive --no-parent --no-host-directories https://archive.cloudera.com/cm6/6.2.0/redhat7/ -P /var/www/html/cloudera-repos
-sudo wget https://archive.cloudera.com/cm6/6.2.0/allkeys.asc -P /var/www/html/cloudera-repos/cm6/6.2.0/
-sudo chmod -R ugo+rX /var/www/html/cloudera-repos/cm6
-```
-* CDH 6
-```
-sudo mkdir -p /var/www/html/cloudera-repos
-sudo wget --recursive --no-parent --no-host-directories https://archive.cloudera.com/cdh6/6.2.0/redhat7/ -P /var/www/html/cloudera-repos
-sudo wget --recursive --no-parent --no-host-directories https://archive.cloudera.com/gplextras6/6.2.0/redhat7/ -P /var/www/html/cloudera-repos
-sudo chmod -R ugo+rX /var/www/html/cloudera-repos/cdh6
-sudo chmod -R ugo+rX /var/www/html/cloudera-repos/gplextras6
+
 ```
 ### 14.5 通过 192.168.10.41:7180/cmf/login 访问 CM(admin/admin)
 * 1.登陆界面
