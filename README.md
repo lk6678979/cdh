@@ -271,4 +271,7 @@ netstat -lnpt | grep 7180 要等一段时间启动完全启动成功后，才能
 ![](https://github.com/lk6678979/image/blob/master/cdh/login.jpg) 
 
 * 2.欢迎界面（开始安装）
-![](https://github.com/lk6678979/image/blob/master/cdh/welcome.jpg)   
+![](https://github.com/lk6678979/image/blob/master/cdh/welcome.jpg)  
+* 3.选择版本（我们选择免费版）
+![](https://github.com/lk6678979/image/blob/master/cdh/choose.jpg)   
+
