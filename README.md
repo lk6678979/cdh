@@ -271,6 +271,11 @@ yum install net-tools 安装 netstat
 netstat -lnpt | grep 7180 要等一段时间启动完全启动成功后，才能看到端口被使用，然后才能真正访问到CM的登录网页
 #显示 tcp 0  0 0.0.0.0:7180  0.0.0.0:*  LISTEN  68289/java
 ```
+### 14.4 CHD安装Parcels复制到CDH默认的Parcels目录
+```
+mkdir -p /opt/cloudera/parcel-repo
+cp /var/www/html/cdh6.2/* /opt/cloudera/parcel-repo/
+```
 ### 14.5 通过 192.168.10.41:7180/cmf/login 访问 CM(admin/admin)
 * 1.登陆界面
 ![](https://github.com/lk6678979/image/blob/master/cdh/login.jpg) 
