@@ -265,3 +265,5 @@ yum install net-tools 安装 netstat
 netstat -lnpt | grep 7180 要等一段时间启动完全启动成功后，才能看到端口被使用，然后才能真正访问到CM的登录网页
 #显示 tcp 0  0 0.0.0.0:7180  0.0.0.0:*  LISTEN  68289/java
 ```
+
+### 14.5 通过 192.168.10.41:7180/cmf/login 访问 CM
