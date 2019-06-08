@@ -202,12 +202,17 @@ baseurl=http://192.168.10.41/cm6.2
 enabled=true
 gpgcheck=false
 EOF
+sudo yum repolist
 ```
-
-			5.sudo yum repolist
-			6.vim /etc/httpd/conf/httpd.conf 
-				修改 /etc/httpd/conf/httpd.conf 配置文件，在<IfModule mime_module>中修改以下内容
-				把 第284行的 AddType application/x-gzip .gz .tgz 修改为 AddType application/x-gzip .gz .tgz .parcel
-			7.重启httpd服务 systemctl restart httpd
-				http://192.168.88.100/cdh6.2/
-				http://192.168.88.100/cm6.2/
+* 修改 /etc/httpd/conf/httpd.conf 配置文件，在<IfModule mime_module>中修改以下内容,把AddType application/x-gzip .gz .tgz 修改为 AddType application/x-gzip .gz .tgz .parcel
+```shell
+vim /etc/httpd/conf/httpd.conf	
+AddType application/x-gzip .gz .tgz .parcel
+```
+* 重启httpd服务 
+```shell
+systemctl restart httpd
+```
+* 访问我们配置好的cdh资源
+http://192.168.10.41/cdh6.2/  
+http://192.168.10.41/cm6.2/  
