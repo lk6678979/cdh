@@ -271,12 +271,22 @@ yum install net-tools 安装 netstat
 netstat -lnpt | grep 7180 要等一段时间启动完全启动成功后，才能看到端口被使用，然后才能真正访问到CM的登录网页
 #显示 tcp 0  0 0.0.0.0:7180  0.0.0.0:*  LISTEN  68289/java
 ```
-### 14.4 CHD安装Parcels复制到CDH默认的Parcels目录
+## 15. CDH安装
+### 16. 在每个服务器创建hdfs用户，并赋予root权限
+```
+adduser hdfs
+vim /etc/sudoers 
+#修改 /etc/sudoers 文件，找到下面一行，把前面的注释（#）去掉
+%wheel    ALL=(ALL)    ALL
+#然后修改用户，使其属于root组（wheel），命令如下：
+usermod -g root hdfs
+```
+### 15.2 CHD安装Parcels复制到CDH默认的Parcels目录
 ```
 mkdir -p /opt/cloudera/parcel-repo
 cp /var/www/html/cdh6.2/* /opt/cloudera/parcel-repo/
 ```
-### 14.5 通过 192.168.10.41:7180/cmf/login 访问 CM(admin/admin)
+### 15.3 通过 192.168.10.41:7180/cmf/login 访问 CM(admin/admin)
 * 1.登陆界面
 ![](https://github.com/lk6678979/image/blob/master/cdh/login.jpg) 
 * 2.欢迎界面（开始安装）
@@ -293,4 +303,5 @@ cp /var/www/html/cdh6.2/* /opt/cloudera/parcel-repo/
 ![](https://github.com/lk6678979/image/blob/master/cdh/root.jpg)
 * 8.安装Agent
 ![](https://github.com/lk6678979/image/blob/master/cdh/install.jpg)
-
+* 8.安装Hdfs
+![](https://github.com/lk6678979/image/blob/master/cdh/install.jpg)
