@@ -266,4 +266,5 @@ netstat -lnpt | grep 7180 要等一段时间启动完全启动成功后，才能
 #显示 tcp 0  0 0.0.0.0:7180  0.0.0.0:*  LISTEN  68289/java
 ```
 
-### 14.5 通过 192.168.10.41:7180/cmf/login 访问 CM
+### 14.5 通过 192.168.10.41:7180/cmf/login 访问 CM(admin/admin)
+![](https://github.com/lk6678979/image/blob/master/cdh/login.jpg) 
