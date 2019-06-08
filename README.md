@@ -65,24 +65,7 @@ ssh-copy-id -i root@node1.cdh.com
 ssh-copy-id -i root@node2.cdh.com
 ssh-copy-id -i root@node3.cdh.com
 ```
-## 7. 安装JDK
-* 所有节点，使用CDH提供的oracle-j2sdk1.8-1.8.0+update181-1.x86_64.rpm安装，默认装在/usr/java/jdk1.8.0_181-cloudera目录
-```
-rpm -qa | grep java # 查询已安装的java
-yum remove java* # 卸载
-rpm -ivh oracle-j2sdk1.8-1.8.0+update181-1.x86_64.rpm
-```
-* 配置环境变量：
-```
-cat << EOF >> /etc/profile
-export JAVA_HOME=/usr/java/jdk1.8.0_181-cloudera
-export PATH=\$JAVA_HOME/bin:\$PATH
-export CLASSPATH=.:\$JAVA_HOME/lib/dt.jar:\$JAVA_HOME/lib/tools.jar
-EOF
-source /etc/profile
-echo "JAVA_HOME=/usr/java/jdk1.8.0_181-cloudera" >> /etc/environment
-```
-## 8. 安装和配置mysql数据库
+## 7. 安装和配置mysql数据库
 
 * 首先删除自带的MariaDB：
 
@@ -138,7 +121,7 @@ create database hue DEFAULT CHARSET utf8 COLLATE utf8_general_ci;
 quit;
 ```
 
-## 9. 创建/usr/share/java目录，将mysql-jdbc包放过去
+## 8. 创建/usr/share/java目录，将mysql-jdbc包放过去
 * 所有节点都需要执行,mysql包自行下载
 ```shell
 mkdir -p /usr/share/java
@@ -146,7 +129,7 @@ mv /opt/mysql-j/mysql-connector-java-5.1.44.jar /usr/share/java/
 #mysql-connector-java-5.1.34.jar 一定要命名为mysql-connector-java.jar
 mv /usr/share/java/mysql-connector-java-5.1.44.jar /usr/share/java/mysql-connector-java.jar 
 ```
-## 10. 安装httpd和createrepo
+## 9. 安装httpd和createrepo
 ```shell
 yum -y install httpd createrepo
 yum install httpd
@@ -154,12 +137,12 @@ service httpd start
 #设置httpd服务开机自启
 systemctl enable httpd.service
 ```
-## 11. 设置swap(所有节点）
+## 10 设置swap(所有节点）
 ```
 echo vm.swappiness = 0 >> /etc/sysctl.conf
 sysctl -w vm.swappiness=0
 ```
-## 12. 禁用透明页(所有节点）
+## 11. 禁用透明页(所有节点）
 ```
 cat << EOF >> /etc/rc.d/rc.local
 echo never > /sys/kernel/mm/transparent_hugepage/defrag
@@ -167,15 +150,15 @@ echo never > /sys/kernel/mm/transparent_hugepage/enabled
 EOF
 chmod +x /etc/rc.d/rc.local
 ```
-## 13. 将下载的cm和cdh文件上传到linux目录，例如如下2个目录
+## 12. 将下载的cm和cdh文件上传到linux目录，例如如下2个目录
 ```shell
 #把 CDH 6.2 的三个文件放到/root/cdh 6.2中，并且注意把sha256后缀的文件名修改为sha
 mkdir -p /root/cdh6.2
 # 把 Cloudera Manager 6.2 的7个文件放到/root/cm6.2中
 mkdir -p /root/cm6.2
 ```
-## 14. 配置本地repo源 
-### 14.1 配置Cloudera Manager包yum源（manager节点）
+## 13. 配置本地repo源 
+### 13.1 配置Cloudera Manager包yum源（manager节点）
 * 将Cloudera Manager安装需要的5个rpm包以及一个asc文件上传到linux服务器(步骤13创建的目录/root/cm6.2)，执行createrepo命令生成rpm元数据。
 ```shell
 #进入目录
@@ -185,7 +168,7 @@ yum install createrepo
 #（注意此命令的最后带一个点） 最终 cm6.2目录下多了一个repodata目录
 createrepo . 
 ``` 
-### 14.2 配置Web服务器
+### 13.2 配置Web服务器
 * 将 cdh6.2目录 和 cm6.1目录 移动到/var/www/html目录下, 使得用户可以通过HTTP访问这些rpm包。
 ```shell
 cd /root
@@ -218,11 +201,9 @@ http://192.168.10.41/cdh6.2/
 http://192.168.10.41/cm6.2/  
 ![](https://github.com/lk6678979/image/blob/master/cdh/cdh6.2.jpg)  
 ![](https://github.com/lk6678979/image/blob/master/cdh/cm6.2.jpg) 
-* 制作Cloudera Manager的repo源  
-1.vim /etc/yum.repos.d/cm.repo 以下为文件内容  
-* 192.168.10.41是本机地址  
+* 制作Cloudera Manager的repo源（192.168.10.41是本机地址）  
 ```shell
-cat << EOF >> /etc/yum.repos.d/os.repo
+cat << EOF >> /etc/yum.repos.d/cm.repo
 [cmrepo]
 name = cm_repo
 baseurl = http://192.168.10.41/cm6.2
@@ -234,4 +215,33 @@ sudo yum repolist
 * 重启httpd服务  
 ```shell
 systemctl restart httpd
+```
+
+## 14. 安装JDK
+* 所有节点，请装官方提供的JDK：oracle-j2sdk1.8-1.8.0+update181-1.x86_64.rpm，默认装在/usr/java/jdk1.8.0_181-cloudera目录
+### 14.1 第一种方式：
+* 因为已经配置好repo仓库所以yum时会到192.168.88.100/cm6.2目录下找到oracle-j2sdk1.8-1.8.0+update181-1.x86_64.rpm进行安装
+```shell
+yum -y install oracle-j2sdk1.8-1.8.0+update181-1.x86_64
+```
+			  	重新加载profile配置文件，让配置文件生效：source /etc/profile     
+			    	检查是否已配置好新的JDK：java -version
+
+### 142 第二种方式
+* 直接使用 rpm -ivh 命令安装 rpm 文件的方式
+```
+cd /var/www/html/cm6.2
+rpm -qa | grep java # 查询已安装的java
+yum remove java* # 卸载
+rpm -ivh oracle-j2sdk1.8-1.8.0+update181-1.x86_64.rpm
+```
+### 14.3 配置环境变量：
+```
+cat << EOF >> /etc/profile
+export JAVA_HOME=/usr/java/jdk1.8.0_181-cloudera
+export PATH=\$JAVA_HOME/bin:\$PATH
+export CLASSPATH=.:\$JAVA_HOME/lib/dt.jar:\$JAVA_HOME/lib/tools.jar
+EOF
+source /etc/profile
+echo "JAVA_HOME=/usr/java/jdk1.8.0_181-cloudera" >> /etc/environment
 ```
