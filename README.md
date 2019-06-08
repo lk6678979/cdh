@@ -1,5 +1,30 @@
 # cdh6.2安装
-## 1. 下载安装文件
+## 1. 安装httpd和createrepo
+```shell
+yum -y install httpd createrepo
+yum install httpd
+service httpd start
+#设置httpd服务开机自启
+systemctl enable httpd.service
+```
+## 2. 下载安装文件
+* 找一个可以访问外网的linux服务器，下载所需安装包，建立本地仓库，操作指令见官网：    
+https://www.cloudera.com/documentation/enterprise/upgrade/topics/cm_ig_create_local_package_repo.html  
+* Cloudera Manager 6
+```
+sudo mkdir -p /var/www/html/cloudera-repos
+sudo wget --recursive --no-parent --no-host-directories https://archive.cloudera.com/cm6/6.2.0/redhat7/ -P /var/www/html/cloudera-repos
+sudo wget https://archive.cloudera.com/cm6/6.2.0/allkeys.asc -P /var/www/html/cloudera-repos/cm6/6.2.0/
+sudo chmod -R ugo+rX /var/www/html/cloudera-repos/cm6
+```
+* CDH 6
+```
+sudo mkdir -p /var/www/html/cloudera-repos
+sudo wget --recursive --no-parent --no-host-directories https://archive.cloudera.com/cdh6/6.2.0/redhat7/ -P /var/www/html/cloudera-repos
+sudo wget --recursive --no-parent --no-host-directories https://archive.cloudera.com/gplextras6/6.2.0/redhat7/ -P /var/www/html/cloudera-repos
+sudo chmod -R ugo+rX /var/www/html/cloudera-repos/cdh6
+sudo chmod -R ugo+rX /var/www/html/cloudera-repos/gplextras6
+```
 * ClouderaManager下载地址(全部下载）
 https://archive.cloudera.com/cm6/6.2.0/redhat7/yum/RPMS/x86_64/  
 * 全部文件下载地址：
@@ -129,14 +154,7 @@ mv /opt/mysql-j/mysql-connector-java-5.1.44.jar /usr/share/java/
 #mysql-connector-java-5.1.34.jar 一定要命名为mysql-connector-java.jar
 mv /usr/share/java/mysql-connector-java-5.1.44.jar /usr/share/java/mysql-connector-java.jar 
 ```
-## 9. 安装httpd和createrepo
-```shell
-yum -y install httpd createrepo
-yum install httpd
-service httpd start
-#设置httpd服务开机自启
-systemctl enable httpd.service
-```
+
 ## 10 设置swap(所有节点）
 ```
 echo vm.swappiness = 0 >> /etc/sysctl.conf
@@ -272,6 +290,15 @@ netstat -lnpt | grep 7180 要等一段时间启动完全启动成功后，才能
 
 * 2.欢迎界面（开始安装）
 ![](https://github.com/lk6678979/image/blob/master/cdh/welcome.jpg)  
+
 * 3.选择版本（我们选择免费版）
 ![](https://github.com/lk6678979/image/blob/master/cdh/choose.jpg)   
+* 4.进入免费版安装界面
+![](https://github.com/lk6678979/image/blob/master/cdh/install-free-1.jpg) 
+* 5.选择需要集群的主机
+![](https://github.com/lk6678979/image/blob/master/cdh/Specify-Hosts.jpg) 
+
+
+
+
 
