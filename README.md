@@ -216,3 +216,5 @@ systemctl restart httpd
 * 访问我们配置好的cdh资源  
 http://192.168.10.41/cdh6.2/  
 http://192.168.10.41/cm6.2/  
+![](https://github.com/lk6678979/image/blob/master/cdh/cdh6.2.png)  
+![](https://github.com/lk6678979/image/blob/master/cdh/cm6.2.png) 
