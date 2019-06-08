@@ -204,7 +204,7 @@ gpgcheck=false
 EOF
 sudo yum repolist
 ```
-* 修改 /etc/httpd/conf/httpd.conf 配置文件，在<IfModule mime_module>中修改以下内容,把AddType application/x-gzip .gz .tgz 修改为 AddType application/x-gzip .gz .tgz .parcel
+* 修改 /etc/httpd/conf/httpd.conf 配置文件，在`<IfModule mime_module>`中修改以下内容,把`AddType application/x-gzip .gz .tgz` 修改为 `AddType application/x-gzip .gz .tgz .parcel`
 ```shell
 vim /etc/httpd/conf/httpd.conf	
 AddType application/x-gzip .gz .tgz .parcel
@@ -213,6 +213,6 @@ AddType application/x-gzip .gz .tgz .parcel
 ```shell
 systemctl restart httpd
 ```
-* 访问我们配置好的cdh资源
+* 访问我们配置好的cdh资源  
 http://192.168.10.41/cdh6.2/  
 http://192.168.10.41/cm6.2/  
