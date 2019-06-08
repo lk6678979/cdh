@@ -216,15 +216,15 @@ sudo yum repolist
 ```shell
 systemctl restart httpd
 ```
-
-## 14. 安装JDK
+## 14. 安装Cloudera Manager Server
+### 14.1 安装JDK
 * 所有节点，请装官方提供的JDK：oracle-j2sdk1.8-1.8.0+update181-1.x86_64.rpm，默认装在/usr/java/jdk1.8.0_181-cloudera目录
-### 14.1 第一种方式：
+#### 14.1.1 第一种方式：
 * 因为已经配置好repo仓库所以yum时会到192.168.88.100/cm6.2目录下找到oracle-j2sdk1.8-1.8.0+update181-1.x86_64.rpm进行安装
 ```shell
 yum -y install oracle-j2sdk1.8-1.8.0+update181-1.x86_64
 ```
-### 14.2 第二种方式
+#### 14.1.2 第二种方式
 * 直接使用 rpm -ivh 命令安装 rpm 文件的方式
 ```
 cd /var/www/html/cm6.2
@@ -232,7 +232,7 @@ rpm -qa | grep java # 查询已安装的java
 yum remove java* # 卸载
 rpm -ivh oracle-j2sdk1.8-1.8.0+update181-1.x86_64.rpm
 ```
-### 14.3 配置环境变量：
+#### 14.1.3 配置环境变量：
 ```
 cat << EOF >> /etc/profile
 export JAVA_HOME=/usr/java/jdk1.8.0_181-cloudera
@@ -242,7 +242,7 @@ EOF
 source /etc/profile
 echo "JAVA_HOME=/usr/java/jdk1.8.0_181-cloudera" >> /etc/environment
 ```
-### 5 初始化数据库
+### 14.2 初始化数据库
 ```
 /opt/cloudera/cm/schema/scm_prepare_database.sh mysql -uroot -pOwp@2019 cm cm
 ```
@@ -252,3 +252,16 @@ echo "JAVA_HOME=/usr/java/jdk1.8.0_181-cloudera" >> /etc/environment
 All done, your SCM database is configured correctly!
 ```
 * 说明：必须保证/usr/share/java目录中已经存在 mysql-connector-java.jar文件或者软连接：ln -s mysql-connector-java-5.1.46.jar mysql-connector-java.jar
+
+### 14.3 启动Cloudera Manager Server
+```shell
+systemctl start cloudera-scm-server
+ps -ef | grep cloudera-scm-server 查看是否启动
+systemctl status cloudera-scm-server 显示 Active: active (running) 
+```	
+### 14.4 检查端口是否监听
+```shell
+yum install net-tools 安装 netstat
+netstat -lnpt | grep 7180 要等一段时间启动完全启动成功后，才能看到端口被使用，然后才能真正访问到CM的登录网页
+#显示 tcp 0  0 0.0.0.0:7180  0.0.0.0:*  LISTEN  68289/java
+```
