@@ -13,7 +13,6 @@ https://archive.cloudera.com/cm6/6.2.0/redhat7/yum/RPMS/x86_64/oracle-j2sdk1.8-1
 https://archive.cloudera.com/cm6/6.2.0/redhat7/yum/RPM-GPG-KEY-cloudera
 https://archive.cloudera.com/cm6/6.2.0/allkeys.asc
 ```
-![](https://github.com/lk6678979/image/blob/master/cdh/down-1.png)  
 * CDH6.2.0安装包地址：https://archive.cloudera.com/cdh6/6.2.0/parcels/  
 由于我们的操作系统为CentOS7，需要下载以下文件：
 * 全部文件下载地址：
@@ -23,7 +22,6 @@ https://archive.cloudera.com/cdh6/6.2.0/parcels/CDH-6.2.0-1.cdh6.2.0.p0.967373-e
 https://archive.cloudera.com/cdh6/6.2.0/parcels/CDH-6.2.0-1.cdh6.2.0.p0.967373-el7.parcel.sha256,注意把sha256后缀的文件名修改为sha  
 https://archive.cloudera.com/cdh6/6.2.0/parcels/manifest.json  
 ```
-![](https://github.com/lk6678979/image/blob/master/cdh/down-2.png)  
 ## 2. 关闭防火墙和iptables
 ```shell
 systemctl stop firewalld.service
@@ -81,6 +79,7 @@ rpm -ivh mysql-community-common-5.7.20-1.el7.x86_64.rpm
 rpm -ivh mysql-community-libs-5.7.20-1.el7.x86_64.rpm
 rpm -ivh mysql-community-client-5.7.20-1.el7.x86_64.rpm
 rpm -ivh mysql-community-server-5.7.20-1.el7.x86_64.rpm
+rpm -ivh mysql-community-libs-compat-5.7.20-1.el7.x86_64.rpm
 ```
 
 * 设置Mysql：
