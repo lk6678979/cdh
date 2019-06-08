@@ -267,4 +267,8 @@ netstat -lnpt | grep 7180 要等一段时间启动完全启动成功后，才能
 ```
 
 ### 14.5 通过 192.168.10.41:7180/cmf/login 访问 CM(admin/admin)
+* 1.登陆界面
 ![](https://github.com/lk6678979/image/blob/master/cdh/login.jpg) 
+
+* 2.欢迎界面（开始安装）
+![](https://github.com/lk6678979/image/blob/master/cdh/welcome.jpg）  
