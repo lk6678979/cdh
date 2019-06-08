@@ -107,7 +107,7 @@ mysql -uroot -p
 
 修改密码，密码为：taima@123ABC，必须包含大小写字母、数字和符号
 ```
-alter user root@localhost identified by 'Sziov@2019';
+alter user root@localhost identified by 'owp@2019';
 #授权用户root使用密码passwd从任意主机连接到mysql服务器
 GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'Sziov@2019' WITH GRANT OPTION;
 flush privileges;
@@ -224,10 +224,7 @@ systemctl restart httpd
 ```shell
 yum -y install oracle-j2sdk1.8-1.8.0+update181-1.x86_64
 ```
-			  	重新加载profile配置文件，让配置文件生效：source /etc/profile     
-			    	检查是否已配置好新的JDK：java -version
-
-### 142 第二种方式
+### 14.2 第二种方式
 * 直接使用 rpm -ivh 命令安装 rpm 文件的方式
 ```
 cd /var/www/html/cm6.2
@@ -244,4 +241,13 @@ export CLASSPATH=.:\$JAVA_HOME/lib/dt.jar:\$JAVA_HOME/lib/tools.jar
 EOF
 source /etc/profile
 echo "JAVA_HOME=/usr/java/jdk1.8.0_181-cloudera" >> /etc/environment
+```
+### 5 初始化数据库
+```
+/opt/cloudera/cm/schema/scm_prepare_database.sh mysql -uroot -powp@2019 cm cm
+``
+然后手动输出SCM账号的密码owp@2019
+最后会显示
+```
+All done, your SCM database is configured correctly!
 ```
