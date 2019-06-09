@@ -298,5 +298,8 @@ netstat -lnpt | grep 7180 要等一段时间启动完全启动成功后，才能
 ![](https://github.com/lk6678979/image/blob/master/cdh/check.png)
 * 10.检查完成
 ![](https://github.com/lk6678979/image/blob/master/cdh/check-complete.png)
+* 11.选择需要安装的组件
+![](https://github.com/lk6678979/image/blob/master/cdh/choose-install.png)
+![](https://github.com/lk6678979/image/blob/master/cdh/choose-install-2.png)
 * 8.安装Hdfs
 ![](https://github.com/lk6678979/image/blob/master/cdh/install.jpg)
