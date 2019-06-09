@@ -294,5 +294,9 @@ netstat -lnpt | grep 7180 要等一段时间启动完全启动成功后，才能
 ![](https://github.com/lk6678979/image/blob/master/cdh/root.jpg)
 * 8.安装Agent(时间较长)
 ![](https://github.com/lk6678979/image/blob/master/cdh/install-agent-1.png)
+* 9.执行检查
+![](https://github.com/lk6678979/image/blob/master/cdh/check.png)
+* 10.检查完成
+![](https://github.com/lk6678979/image/blob/master/cdh/check-complete.png)
 * 8.安装Hdfs
 ![](https://github.com/lk6678979/image/blob/master/cdh/install.jpg)
