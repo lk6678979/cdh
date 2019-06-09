@@ -277,37 +277,39 @@ netstat -lnpt | grep 7180 要等一段时间启动完全启动成功后，才能
 ```
 ## 15 CDH安装
 ### 15.1 通过 192.168.10.41:7180/cmf/login 访问 CM(admin/admin)
-* 1.登陆界面
+#### 15.1.1 登陆界面
 ![](https://github.com/lk6678979/image/blob/master/cdh/login.jpg) 
-* 2.欢迎界面（开始安装）
+#### 15.1.2 欢迎界面（开始安装）
 ![](https://github.com/lk6678979/image/blob/master/cdh/welcome.jpg)  
-* 3.选择版本（我们选择免费版）
+#### 15.1.3 选择版本（我们选择免费版）
 ![](https://github.com/lk6678979/image/blob/master/cdh/choose.jpg)   
-* 4.安装首页
+#### 15.1.4 安装首页
 ![](https://github.com/lk6678979/image/blob/master/cdh/install-free-1.jpg) 
-* 5.选择本地存储库，也就是我们之前已创建好的库
+#### 15.1.5 选择本地存储库，也就是我们之前已创建好的库
 ![](https://github.com/lk6678979/image/blob/master/cdh/local-1.png) 
 ![](https://github.com/lk6678979/image/blob/master/cdh/local-1.png) 
-* 6.JDK选项
+#### 15.1.6 JDK选项
 ![](https://github.com/lk6678979/image/blob/master/cdh/jdk.jpg) 
-* 7.提供SSH登陆凭证（我们这里使用root密码）
+#### 15.1.7 提供SSH登陆凭证（我们这里使用root密码）
 ![](https://github.com/lk6678979/image/blob/master/cdh/root.jpg)
-* 8.安装Agent(时间较长)
+#### 15.1.8 安装Agent(时间较长)
 ![](https://github.com/lk6678979/image/blob/master/cdh/install-agent-1.png)
-* 9.执行检查
+#### 15.1.9 执行检查
 ![](https://github.com/lk6678979/image/blob/master/cdh/check.png)
-* 10.检查完成
+#### 15.1.10 检查完成
 ![](https://github.com/lk6678979/image/blob/master/cdh/check-complete.png)
-* 11.选择需要安装的组件
+#### 15.1.11 选择需要安装的组件
 ![](https://github.com/lk6678979/image/blob/master/cdh/choose-install.png)
 ![](https://github.com/lk6678979/image/blob/master/cdh/choose-install-2.png)
-* 12.组件安装配置
+#### 15.1.12 组件安装配置
 ![](https://github.com/lk6678979/image/blob/master/cdh/config-1.png)
 ![](https://github.com/lk6678979/image/blob/master/cdh/config-2.png)
-* 13.配置hive数据库（我们在上面已创建数据库metastore，账号：metastore，密码：Owp@2019)
+#### 15.1.13 配置hive数据库（我们在上面已创建数据库metastore，账号：metastore，密码：Owp@2019)
 ![](https://github.com/lk6678979/image/blob/master/cdh/config-databse-hive.png)
-* 14.检查其他配置
+#### 15.1.14 检查其他配置
 ![](https://github.com/lk6678979/image/blob/master/cdh/conifg-all.png)
-* 15.开始执行
+#### 15.1.1 开始执行
 ![](https://github.com/lk6678979/image/blob/master/cdh/start-install.png)
+#### 15.1.16 组件安装完成
+![](https://github.com/lk6678979/image/blob/master/cdh/install-ok.png)
 
