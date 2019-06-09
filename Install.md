@@ -286,13 +286,13 @@ netstat -lnpt | grep 7180 要等一段时间启动完全启动成功后，才能
 * 4.安装首页
 ![](https://github.com/lk6678979/image/blob/master/cdh/install-free-1.jpg) 
 * 5.选择本地存储库，也就是我们之前已创建好的库
-![](https://github.com/lk6678979/image/blob/master/cdh/data-1.jpg) 
-![](https://github.com/lk6678979/image/blob/master/cdh/data-2.jpg) 
+![](https://github.com/lk6678979/image/blob/master/cdh/local-1.png) 
+![](https://github.com/lk6678979/image/blob/master/cdh/local-1.png) 
 * 6.JDK选项
 ![](https://github.com/lk6678979/image/blob/master/cdh/jdk.jpg) 
 * 7.提供SSH登陆凭证（我们这里使用root密码）
 ![](https://github.com/lk6678979/image/blob/master/cdh/root.jpg)
-* 8.安装Agent
+* 8.安装Agent(时间较长)
 ![](https://github.com/lk6678979/image/blob/master/cdh/install-agent-1.png)
 * 8.安装Hdfs
 ![](https://github.com/lk6678979/image/blob/master/cdh/install.jpg)
