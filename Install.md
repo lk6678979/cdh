@@ -112,7 +112,7 @@ sudo chmod -R ugo+rX /var/www/html/cloudera-repos/gplextras6
 * 确定系统未侦听的端口。此示例使用端口8900。
 * 在/var/www/html目录中启动Python SimpleHTTPServer：
 ```shell
-cd / var / www / html 
+cd /var/www/html 
 python -m SimpleHTTPServer 8900
 ```
 ```
@@ -138,7 +138,7 @@ EOF
 #### 9.5.3 添加一个CDH组件的包源
 ```
 cat << EOF >> /etc/yum.repos.d/cloudera-repo-cdh.repo
-cloudera-repo-cdh]
+[cloudera-repo-cdh]
 name=cloudera-repo-cdh
 baseurl=http://192.168.10.41:8900/cloudera-repos/cdh6/6.2.0/redhat7/yum/
 enabled=1
@@ -244,18 +244,16 @@ mv /usr/share/java/mysql-connector-java-5.1.44.jar /usr/share/java/mysql-connect
 ### 14 初始化数据库
 * 运行下面的脚本，告诉cloudera 你建立的数据库用户密码等信息
 ```
-/opt/cloudera/cm/schema/scm_prepare_database.sh mysql scm scm Owp@2019
-/opt/cloudera/cm/schema/scm_prepare_database.sh mysql amon amon Owp@2019
-/opt/cloudera/cm/schema/scm_prepare_database.sh mysql rman rman Owp@2019
-/opt/cloudera/cm/schema/scm_prepare_database.sh mysql hue hue Owp@2019
-/opt/cloudera/cm/schema/scm_prepare_database.sh mysql metastore metastore Owp@2019
-/opt/cloudera/cm/schema/scm_prepare_database.sh mysql sentry sentry Owp@2019
-/opt/cloudera/cm/schema/scm_prepare_database.sh mysql nav nav Owp@2019
-/opt/cloudera/cm/schema/scm_prepare_database.sh mysql navms navms Owp@2019
-/opt/cloudera/cm/schema/scm_prepare_database.sh mysql oozie oozie Owp@2019
+/opt/cloudera/cm/schema/scm_prepare_database.sh mysql scm scm 'Owp@2019'
+/opt/cloudera/cm/schema/scm_prepare_database.sh mysql amon amon 'Owp@2019'
+/opt/cloudera/cm/schema/scm_prepare_database.sh mysql rman rman 'Owp@2019'
+/opt/cloudera/cm/schema/scm_prepare_database.sh mysql hue hue 'Owp@2019'
+/opt/cloudera/cm/schema/scm_prepare_database.sh mysql metastore metastore 'Owp@2019'
+/opt/cloudera/cm/schema/scm_prepare_database.sh mysql sentry sentry 'Owp@2019'
+/opt/cloudera/cm/schema/scm_prepare_database.sh mysql nav nav 'Owp@2019'
+/opt/cloudera/cm/schema/scm_prepare_database.sh mysql navms navms 'Owp@2019'
+/opt/cloudera/cm/schema/scm_prepare_database.sh mysql oozie oozie 'Owp@2019'
 ```
-然后手动输出SCM账号的密码Owp@2019
-最后会显示
 ```
 All done, your SCM database is configured correctly!
 ```
