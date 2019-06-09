@@ -308,5 +308,6 @@ netstat -lnpt | grep 7180 要等一段时间启动完全启动成功后，才能
 ![](https://github.com/lk6678979/image/blob/master/cdh/config-databse-hive.png)
 * 14.检查其他配置
 ![](https://github.com/lk6678979/image/blob/master/cdh/conifg-all.png)
-
+* 15.开始执行
+![](https://github.com/lk6678979/image/blob/master/cdh/start-install.png)
 
