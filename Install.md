@@ -301,5 +301,12 @@ netstat -lnpt | grep 7180 要等一段时间启动完全启动成功后，才能
 * 11.选择需要安装的组件
 ![](https://github.com/lk6678979/image/blob/master/cdh/choose-install.png)
 ![](https://github.com/lk6678979/image/blob/master/cdh/choose-install-2.png)
-* 8.安装Hdfs
-![](https://github.com/lk6678979/image/blob/master/cdh/install.jpg)
+* 12.组件安装配置
+![](https://github.com/lk6678979/image/blob/master/cdh/config-1.png)
+![](https://github.com/lk6678979/image/blob/master/cdh/config-2.png)
+* 13.配置hive数据库（我们在上面已创建数据库metastore，账号：metastore，密码：Owp@2019)
+![](https://github.com/lk6678979/image/blob/master/cdh/config-databse-hive.png)
+* 14.检查其他配置
+![](https://github.com/lk6678979/image/blob/master/cdh/conifg-all.png)
+
+
