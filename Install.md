@@ -312,4 +312,5 @@ netstat -lnpt | grep 7180 要等一段时间启动完全启动成功后，才能
 ![](https://github.com/lk6678979/image/blob/master/cdh/start-install.png)
 #### 15.1.16 组件安装完成
 ![](https://github.com/lk6678979/image/blob/master/cdh/install-ok.png)
-
+#### 15.1.16 HDFS安装HA模式
+![](https://github.com/lk6678979/image/blob/master/cdh/hdfs-ha.png)
