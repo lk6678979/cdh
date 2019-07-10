@@ -180,6 +180,7 @@ yum erase -y mariadb mariadb-libs
 ### 12.2 安装Mysql，因为依赖关系，这里必须按照这个顺序安装(自行下载安装rpm文件)：
 ```
 yum install libaio
+yum install libnuma*
 rpm -ivh mysql-community-common-5.7.20-1.el7.x86_64.rpm
 rpm -ivh mysql-community-libs-5.7.20-1.el7.x86_64.rpm
 rpm -ivh mysql-community-client-5.7.20-1.el7.x86_64.rpm
