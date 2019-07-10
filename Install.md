@@ -59,6 +59,8 @@ vim /etc/sudoers
 %wheel    ALL=(ALL)    ALL
 #然后修改用户，使其属于root组（wheel），命令如下：
 usermod -g root hdfs
+#注意，CHD会去检测hdfs用户是否属于自己的组（hdfs）和hadoop，所有装好cdh后
+usermod -G root,hadoop,hdfs hdfs
 ```
 # ---------记得一定要重启服务器reboot---------
 ## 9. 下载安装文件
