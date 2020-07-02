@@ -289,6 +289,7 @@ netstat -lnpt | grep 7180 要等一段时间启动完全启动成功后，才能
 ### 15.4 安装首页
 ![](https://github.com/lk6678979/image/blob/master/cdh/install-free-1.jpg) 
 ### 15.5 选择本地存储库，也就是我们之前已创建好的库
+【使用自定义】存储库和【使用数据包】
 ![](https://github.com/lk6678979/image/blob/master/cdh/local-1.png) 
 ![](https://github.com/lk6678979/image/blob/master/cdh/local-1.png) 
 ### 15.6 JDK选项
