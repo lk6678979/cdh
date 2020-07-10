@@ -58,6 +58,7 @@ vim /etc/sudoers
 #修改 /etc/sudoers 文件，找到下面一行，把前面的注释（#）去掉
 %wheel    ALL=(ALL)    ALL
 #然后修改用户，使其属于root组（wheel），命令如下：
+#注意CDH检查时可能会遇到The user 'hdfs' is missing its own group on the following hosts，是因为hdfs默认的组不是hdfs，那么执行usermod -g hdfs hdfs
 usermod -g root hdfs
 #注意，CHD会去检测hdfs用户是否属于自己的组（hdfs）和hadoop，所有装好cdh后
 usermod -G root,hadoop,hdfs hdfs
